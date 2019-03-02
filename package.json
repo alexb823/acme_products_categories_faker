@@ -1,0 +1,35 @@
+{
+  "name": "acme_products_categories_faker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "webpack": "webpack",
+    "webpack:dev": "npm run webpack -- --mode=development --watch",
+    "start:dev": "npm run webpack:dev & DATABASE_URL=postgres://localhost/acme_fake_products_db nodemon server.js --ignore src/ ignore dist/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "express": "^4.16.4",
+    "fake": "^0.2.2",
+    "faker": "^4.1.0",
+    "morgan": "^1.9.1",
+    "pg": "^7.8.1",
+    "pg-hstore": "^2.3.2",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "sequelize": "^4.42.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
+}
