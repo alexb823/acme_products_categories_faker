@@ -3,6 +3,7 @@ const faker = require('faker');
 
 const db = new Sequelize(process.env.DATABASE_URL, { logging: false });
 
+//models
 const Category = db.define('category', {
   name: Sequelize.STRING,
 });
@@ -11,9 +12,20 @@ const Product = db.define('product', {
   name: Sequelize.STRING,
 });
 
+//association
 Product.belongsTo(Category);
 Category.hasMany(Product);
 
+//Class methods
+Category.createFakeCategory = function() {
+  return Category.create({ name: faker.commerce.department() });
+};
+
+Product.createFakeProduct = function(categoryId) {
+  return Product.create({ name: faker.commerce.productName(), categoryId });
+};
+
+//fake data for seeding
 const createCategoryNames = (count = 2) => {
   const categoryNames = [];
   while (categoryNames.length < count) {
@@ -51,9 +63,11 @@ const syncAndSeed = () => {
         ),
       ]);
     })
-    .catch(err => console.err(err))
+    .catch(err => console.err(err));
 };
 
 module.exports = {
   syncAndSeed,
-}
+  Category,
+  Product,
+};
