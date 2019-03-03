@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const app = express();
-const { Category, Product, syncAndSeed } = require('./db');
+const { initDb, Category, Product, syncAndSeed } = require('./db');
 const port = process.env.PORT || 3000;
 
 app.use(morgan('dev'));
@@ -57,6 +57,6 @@ app.use((err, req, res, next) => {
   res.send(err.message || 'Internet server error');
 });
 
-syncAndSeed().then(() =>
+initDb().then(() =>
   app.listen(port, () => console.log(`Listening on port ${port}`))
 );

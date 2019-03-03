@@ -42,6 +42,7 @@ const createPrdNames = (count = 2) => {
   return productNames;
 };
 
+//sync and seed with some data for testing
 const syncAndSeed = () => {
   return db
     .sync({ force: true })
@@ -66,7 +67,14 @@ const syncAndSeed = () => {
     .catch(err => console.err(err));
 };
 
+const initDb =() => {
+  return db.sync()
+  .then(() => console.log('db synced'))
+  .catch(err => console.error(err))
+}
+
 module.exports = {
+  initDb,
   syncAndSeed,
   Category,
   Product,
