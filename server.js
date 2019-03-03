@@ -7,6 +7,7 @@ const port = process.env.PORT || 3000;
 
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'index.html'));
@@ -18,31 +19,30 @@ app.get('/api/categories', (req, res, next) => {
     .catch(next);
 });
 
-app.post('api/categories', (req, res, next) => {
+app.post('/api/categories', (req, res, next) => {
   Category.createFakeCategory()
-    .then(category => res.send(category))
+    .then(() => res.sendStatus(201))
     .catch(next);
 });
 
-app.post('api/categories/:id/products', (req, res, next) => {
+app.post('/api/categories/:id/products', (req, res, next) => {
   Product.createFakeProduct(req.params.id)
-    .then(product => res.send(product))
+    .then(() => res.sendStatus(201))
     .catch(next);
 });
 
 app.delete('/api/categories/:id', (req, res, next) => {
-  Product.destroy({where: {categoryId: req.params.id}})
-  .then(Category.destroy({where: {id: req.params.id}}))
-  .then(() => res.sendStatus(204))
-  .catch(next)
-})
-
+  Product.destroy({ where: { categoryId: req.params.id } })
+    .then(Category.destroy({ where: { id: req.params.id } }))
+    .then(() => res.sendStatus(204))
+    .catch(next);
+});
 
 app.delete('/api/products/:id', (req, res, next) => {
-  Product.destroy({ where: {id: req.params.id}})
-  .then(() => res.sendStatus(204))
-  .catch(next)
-})
+  Product.destroy({ where: { id: req.params.id } })
+    .then(() => res.sendStatus(204))
+    .catch(next);
+});
 
 //Handle 404s
 app.use((req, res, next) => {

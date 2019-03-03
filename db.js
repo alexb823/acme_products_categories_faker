@@ -26,7 +26,7 @@ Product.createFakeProduct = function(categoryId) {
 };
 
 //fake data for seeding
-const createCategoryNames = (count = 2) => {
+const createCtgNames = (count = 2) => {
   const categoryNames = [];
   while (categoryNames.length < count) {
     categoryNames.push(faker.commerce.department());
@@ -34,7 +34,7 @@ const createCategoryNames = (count = 2) => {
   return categoryNames;
 };
 
-const createProductNames = (count = 2) => {
+const createPrdNames = (count = 2) => {
   const productNames = [];
   while (productNames.length < count) {
     productNames.push(faker.commerce.productName());
@@ -45,19 +45,19 @@ const createProductNames = (count = 2) => {
 const syncAndSeed = () => {
   return db
     .sync({ force: true })
-    .then(() => createCategoryNames())
+    .then(() => createCtgNames())
     .then(categoryNames => {
       return Promise.all(categoryNames.map(name => Category.create({ name })));
     })
     .then(([cat1, cat2]) => {
       return Promise.all([
         Promise.all(
-          createProductNames().map(name =>
+          createPrdNames().map(name =>
             Product.create({ name, categoryId: cat1.id })
           )
         ),
         Promise.all(
-          createProductNames().map(name =>
+          createPrdNames().map(name =>
             Product.create({ name, categoryId: cat2.id })
           )
         ),
