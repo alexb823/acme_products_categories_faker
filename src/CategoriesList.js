@@ -7,8 +7,8 @@ const CategoriesList = ({ categories, destroyCtg, createPrd, destroyPrd }) => {
       {categories.map(category => {
         return (
           <li className="list-group-item" key={category.id}>
-            <div className="d-flex justify-content-between py-3">
-              {category.name}
+            <div className="d-flex justify-content-between align-items-center py-3">
+              <h5>{category.name}</h5>
 
               <div className="btn-group" role="group">
                 <button

@@ -6,7 +6,7 @@ const ProductList = ({ products, destroyPrd }) => {
       {products.map(product => {
         return (
           <li className="list-group-item" key={product.id}>
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-between align-items-center">
               {product.name}
 
               <button
