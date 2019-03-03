@@ -8,6 +8,7 @@ const port = process.env.PORT || 3000;
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'index.html'));
