@@ -31,7 +31,7 @@ const CategoriesList = ({ categories, destroyCtg, createPrd, destroyPrd }) => {
             {category.products ? (
               <ProductList products={category.products} destroyPrd={destroyPrd} />
             ) : (
-              <span />
+              null
             )}
           </li>
         );
