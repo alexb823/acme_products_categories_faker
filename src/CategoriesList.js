@@ -28,10 +28,11 @@ const CategoriesList = ({ categories, destroyCtg, createPrd, destroyPrd }) => {
               </div>
             </div>
 
-            {category.products ? (
-              <ProductList products={category.products} destroyPrd={destroyPrd} />
-            ) : (
-              null
+            {category.products && (
+              <ProductList
+                products={category.products}
+                destroyPrd={destroyPrd}
+              />
             )}
           </li>
         );
