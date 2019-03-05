@@ -27,11 +27,15 @@ class App extends Component {
   }
 
   createCtg() {
-    axios.post('/api/categories').then(() => this.getCategories());
+    axios
+    .post('/api/categories')
+    .then(() => this.getCategories());
   }
 
   destroyCtg(id) {
-    axios.delete(`api/categories/${id}`).then(() => this.getCategories());
+    axios
+    .delete(`api/categories/${id}`)
+    .then(() => this.getCategories());
   }
 
   createPrd(id) {
@@ -41,7 +45,9 @@ class App extends Component {
   }
 
   destroyPrd(id) {
-    axios.delete(`/api/products/${id}`).then(() => this.getCategories());
+    axios
+    .delete(`/api/products/${id}`)
+    .then(() => this.getCategories());
   }
 
   render() {

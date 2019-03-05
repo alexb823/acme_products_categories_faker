@@ -25,7 +25,16 @@ Product.createFakeProduct = function(categoryId) {
   return Product.create({ name: faker.commerce.productName(), categoryId });
 };
 
-//fake data for seeding
+const initDb = () => {
+  return db
+    .sync()
+    .then(() => console.log('db synced'))
+    .catch(err => console.error(err));
+};
+
+
+//Below methods are for seeding db with some data to test the back end
+//Not used in the deployed app
 const createCtgNames = (count = 2) => {
   const categoryNames = [];
   while (categoryNames.length < count) {
@@ -42,7 +51,6 @@ const createPrdNames = (count = 2) => {
   return productNames;
 };
 
-//sync and seed with some data for testing
 const syncAndSeed = () => {
   return db
     .sync({ force: true })
@@ -66,12 +74,6 @@ const syncAndSeed = () => {
     })
     .catch(err => console.err(err));
 };
-
-const initDb =() => {
-  return db.sync()
-  .then(() => console.log('db synced'))
-  .catch(err => console.error(err))
-}
 
 module.exports = {
   initDb,
