@@ -15,7 +15,7 @@ app.get('/', (req, res, next) => {
 });
 
 app.get('/api/categories', (req, res, next) => {
-  Category.findAll({ include: [{ model: Product }] })
+  Category.findAll({ include: [{ model: Product }], order: [['id', 'ASC']] })
     .then(categories => res.send(categories))
     .catch(next);
 });
